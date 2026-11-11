@@ -95,19 +95,3 @@ Article status: 0 draft, 1 pending, 2 under review, 3 published, 4 returned to t
 Errors: 400 bad input, 401 missing or invalid token, 403 wrong role, 404 not found, 409 conflict.
 
 `viewsList` (`[{date: "YYYY-MM-DD", numberOfViews}]`) comes from the `article_views` table. The API only reads it, and nothing in this project writes to it. Whatever serves the published articles needs to insert rows (`article_id`, `view_date`, `number_of_views`), otherwise the charts stay empty.
-
-## Frontend
-
-The React app is in `ISD_FE`. Set `REACT_APP_API_URL=http://localhost:8080` in its `.env` (no `/api` on the end), and make sure `CORS_ALLOWED_ORIGINS` here includes the frontend's URL.
-
-## Tests
-
-```bash
-./mvnw test
-```
-
-They run on in-memory H2, so you don't need MySQL.
-
-## Deploying
-
-Don't commit `.env`. Set `CORS_ALLOWED_ORIGINS` to your real frontend URL. On Railway or similar, set the variables in the dashboard; `PORT` is provided for you.
